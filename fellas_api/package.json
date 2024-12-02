@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "axios": "^1.7.7",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "cors": "^2.8.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
+  "proxy": "https://rdap.registro.br",
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@types/react": "^18.3.12",
