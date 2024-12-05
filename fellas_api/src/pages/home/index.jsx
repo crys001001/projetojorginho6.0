@@ -27,13 +27,12 @@ function Home() {
     }
 
     try {
-      const response = await axios.get(`https://rdap.registro.br/domain/${dominio}`);
+      const response = await axios.get(`http://localhost:3001/api/domain/${dominio}`);
       
       if (response.data) {
         setDadosDominio({
           ldhName: response.data.ldhName,
           status: response.data.status,
-          events: response.data.events
         });
       } else {
         setDisponivel(true);
@@ -53,7 +52,7 @@ function Home() {
     <div className='dados'>
       <MeteorShower />
       <form>
-        <h1 className='text-center'>Verificação de Domínio</h1>
+        <h1 className='text-center'>Register Domain</h1>
         <input placeholder='Domínio' name='dominio' type="text" ref={inputDominio} />
         <button type='button' onClick={verificarDominio}>Verificar</button>
       </form>
@@ -62,13 +61,10 @@ function Home() {
       {erro && <p>{erro}</p>}
       {disponivel && <p className="disponivel">O domínio está disponível!</p>}
 
-
       {dadosDominio && (
         <div className='card'>
           <p>Domínio: <span>{dadosDominio.ldhName}</span></p>
           <p>Status: <span>{dadosDominio.status}</span></p>
-          <p>Data de Criação: <span>{new Date(dadosDominio.events.find(evento => evento.eventAction === 'registration').eventDate).toLocaleDateString()}</span></p>
-          <p>Data de Expiração: <span>{new Date(dadosDominio.events.find(evento => evento.eventAction === 'expiration').eventDate).toLocaleDateString()}</span></p>
         </div>
       )}
     </div>
